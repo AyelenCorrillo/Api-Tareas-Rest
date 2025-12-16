@@ -11,7 +11,17 @@ Este proyecto implementa una API REST completa para la gestión de tareas, con u
 * **Herramientas de Prueba:** Postman
 * **Build Tool:** Maven
 
-## ✨ Arquitectura y Funcionalidad
+## Configuración Inicial del Proyecto
+
+El proyecto fue inicializado con Spring Initializr, utilizando la versión de Java **[21]** y las siguientes dependencias esenciales para la arquitectura RESTful:
+
+* **Spring Web:** Para construir los endpoints y usar `@RestController`.
+* **Spring Data JPA / PostgreSQL Driver:** Para la persistencia de datos.
+* **Spring Boot DevTools:** Para un desarrollo más rápido.
+
+![Captura de pantalla de la configuración en Spring Initializr](images/spring_initializr.png)
+
+## Arquitectura y Funcionalidad
 
 El proyecto se compone de dos capas principales comunicadas vía HTTP:
 
