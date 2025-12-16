@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor de Tareas RESTful</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { text-align: center; }
+        #task-form input, #task-form button { padding: 10px; margin-right: 10px; }
+        .task-item { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .completed span { text-decoration: line-through; color: gray; }
+        button { cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>📋 Gestor de Tareas (API REST)</h1>
+
+    <div id="task-form">
+        <input type="text" id="task-description" placeholder="Nueva descripción de tarea..." size="50">
+        <button onclick="createTask()">Añadir Tarea</button>
+    </div>
+
+    <h2>Tareas Pendientes:</h2>
+    
+    <div id="tasks-container">
+        <p>Cargando tareas...</p>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
