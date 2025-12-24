@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Tarea</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 50px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+        .btn-save { background-color: #28a745; color: white; padding: 10px; border: none; cursor: pointer; width: 100%; }
+        .btn-cancel { display: block; text-align: center; margin-top: 10px; color: #666; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h2>Editar Tarea</h2>
+    <form th:action="@{/tareas/actualizar/{id}(id=${tarea.id})}" th:object="${tarea}" method="post">
+        <label>Nueva descripción:</label>
+        <input type="text" th:field="*{descripcion}" required>
+        
+        <button type="submit" class="btn-save">Guardar Cambios</button>
+        <a th:href="@{/tareas}" class="btn-cancel">Cancelar</a>
+    </form>
+</body>
+</html>

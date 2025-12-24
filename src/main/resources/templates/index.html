@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor de Tareas con Thymeleaf</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .task-item { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .completed span { text-decoration: line-through; color: gray; }
+        /* Estilo para la fecha */
+        .task-date { font-size: 0.85em; color: #6c757d; display: block; margin-top: 4px; }
+        .btn-delete { background-color: #dc3545; color: white; text-decoration: none; padding: 5px 10px; border-radius: 4px; }
+        .btn-toggle { background-color: #007bff; color: white; text-decoration: none; padding: 5px 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Gestor de Tareas (SSR)</h1>
+
+    <p>
+        Tienes <strong th:text="${total}">0</strong> tareas en total 
+        (<span th:text="${pendientes}">0</span> pendientes).
+    </p>
+
+    <form th:action="@{/tareas/guardar}" th:object="${nuevaTarea}" method="post" style="margin-bottom: 20px;">
+        <input type="text" th:field="*{descripcion}" required>
+        <button type="submit">Añadir Tarea</button>
+        <a th:href="@{/tareas/limpiar-completadas}" 
+            style="color: gray; font-size: 0.9em; margin-left: 20px;">Limpiar completadas</a>
+    </form>
+
+    <h2>Tareas Pendientes:</h2>
+    
+    <div id="tasks-container">
+        <div th:each="tarea : ${tareas}" th:class="${tarea.completada} ? 'task-item completed' : 'task-item'">
+            <div>
+                <span th:text="${tarea.descripcion}">Descripción de la tarea</span>
+                
+                <span class="task-date" 
+                      th:text="'Creada el: ' + ${#temporals.format(tarea.fechaCreacion, 'dd/MM/yyyy HH:mm')}">
+                </span>
+            </div>
+            
+            <div>
+                <a th:href="@{/tareas/editar/{id}(id=${tarea.id})}" 
+                    style="margin-right: 10px; text-decoration: none; color: #856404;">Editar</a>
+                <a th:href="@{/tareas/toggle/{id}(id=${tarea.id})}" class="btn-toggle" 
+                   th:text="${tarea.completada} ? 'Deshacer' : 'Completar'"></a>
+                
+                <a th:href="@{/tareas/eliminar/{id}(id=${tarea.id})}" class="btn-delete"
+                   onclick="return confirm('¿Seguro?')">Eliminar</a>
+            </div>
+        </div>
+        
+        <p th:if="${#lists.isEmpty(tareas)}">No hay tareas pendientes. ¡Añade una!</p>
+    </div>
+</body>
+</html>

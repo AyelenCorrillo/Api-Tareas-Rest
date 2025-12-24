@@ -6,7 +6,8 @@ import com.apirest.apitarearest.model.Tarea;
 
 
 public interface TareaRepository extends JpaRepository<Tarea, Long> {
-    // Si queremos buscar tareas por estado, lo definimos aquí:
-    // List<Tarea> findByCompletada(boolean completada);
+    
+    // Método para borrar todas las tareas que tengan completada = true
+    void deleteByCompletada(boolean completada);
     
 }

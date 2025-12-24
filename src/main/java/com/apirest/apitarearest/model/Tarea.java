@@ -28,11 +28,10 @@ public class Tarea {
     // --- Constructor vacío ---
     public Tarea() {
         this.completada = false; // Por defecto, la tarea no está completada
-        this.fechaCreacion = LocalDateTime.now();
+        this.fechaCreacion = LocalDateTime.now(); //asigna la fecha y hora actual automaticamente
     }
 
     // --- Getters y Setters ---
-    // (Asegúrate de generar todos los getters y setters aquí)
     
     public Long getId() {
         return id;
